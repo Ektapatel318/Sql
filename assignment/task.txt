@@ -1,0 +1,80 @@
+TASK -1 : Create Database: Practices
+
+
+1--> Return the FirstName, LastName , ProductName and Sales Price for all products sold in month of 
+October 2022 
+
+SELECT t3.FirstName, t3.LastName , t2.Prd_Name, t1.SalesPrice 
+FROM tblsales as t1
+LEFT JOIN tblproduct as t2
+ON t1.Prd_ID=t2.Prd_ID
+LEFT JOIN tblcustomer as t3
+ON t1.Cust_id = t3.CustomerID
+WHERE monthname(t1.SalesDate)='october';
+
+
+2-->  Return the CustomerID, FirstName, and LastName of those individuals in the Customer table who 
+have made no Sales purchases.
+
+
+
+
+
+3--> Return the FirstName, LastName, SalePrice, Recommended SalePrice, and the difference between the 
+SalePrice and Recommended SalePrice for all Sales. The difference must be returned as a positive 
+number.
+
+
+SELECT t3.FirstName,t3.LastName, t1.salesprice, t2.recommended_price , abs(t1.SalesPrice-t2.Recommended_Price) AS difference
+FROM tblsales AS t1
+LEFT JOIN tblproduct as t2
+ON t1.Prd_ID=t2.Prd_ID
+LEFT JOIN tblcustomer AS t3
+ON t1.Cust_id = t3.CustomerID;
+
+
+4--> Add the following Customer and Sale information to the database. (using store procedure) 
+FirstName : Mansi 
+LastName : Joshi
+City: Mumbai 
+State:MH 
+Zip:400001 
+ProductID:3 
+SalePrice:205 
+SaleDate:05/12/2022
+
+
+---------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE insertdata_tblcustomer(f Varchar(20), l varchar(20), c varchar(20), s varchar(20), z int,)
+BEGIN
+	INSERT INTO tblcustomer(FirstName,LastName,City,State,Zip) VALUES(f,l,c,s,z);
+    
+END
+--------------------------------
+CREATE PROCEDURE insertdata_tblpsales(p int,d date)
+BEGIN
+	INSERT INTO tblsales(SalesPrice,SalesDate) VALUES(p,d);
+END;
+--------------------------------
+
+call insertdata_tblcustomer('Mansi','Joshi','Mumbai','MH',400001);
+call insertdata_tblpsales(205,'05/12/2022');
+
+--------------------------------
+
+
+
+5--> Return the Product Category and the average Sale Price for those customers who have purchased two 
+or more products.
+
+
+SELECT t2.category
+FROM tblsales AS t1
+LEFT JOIN tblproduct As t2 
+on t1.Prd_ID = t2.Prd_ID
+LEFT JOIN tblcustomer AS t3
+ON t1.Cust_id= t3.CustomerID
+WHERE AVG(SalesPrice)
+HAVING 
