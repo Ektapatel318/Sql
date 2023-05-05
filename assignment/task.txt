@@ -82,3 +82,71 @@ or more products.
 
 Task : 2 
 
+1--> Select the detail of the employee whose name start with P.
+SELECT * FROM employee
+WHERE EmpName
+LIKE 'p%';
+
+
+2--> How many permanent candidate take salary more than 5000.
+SELECT COUNT(empid) FROM empsalary
+WHERE IsPermanent='Yes' AND salary>5000;
+
+
+3--> Select the detail of employee whose emailed is in Gmail.
+SELECT * FROM employee 
+WHERE emailid LIKE '%gmail%';
+
+4--> Select the details of the employee who work either for department E-104 or E-102.
+SELECT * FROM employee
+WHERE Department in ('E-104','E-102');
+
+5--> What is the department name for DeptID E-102?
+SELECT deptname FROM empdept
+WHERE deptid='E-102';
+
+6--> What is total salary that is paid to permanent employees?
+SELECT SUM(salary) FROM empsalary WHERE ispermanent='Yes';
+
+7--> List name of all employees whose name ends with a.
+SELECT EmpName FROM employee
+WHERE EmpName 
+LIKE '%a';
+
+8--> List the number of department of employees in each project.
+
+
+9--> How many project started in year 2010.
+SELECT COUNT(projectid) FROM empproject WHERE startyear=2010; 
+
+10--> How many project started and finished in the same year.
+SELECT COUNT(projectid) FROM empproject
+WHERE startyear=endyear;
+
+11--> Select the name of the employee whose name's 3rd character is 'h'.
+SELECT empname FROM employee
+WHERE empname 
+LIKE '__h%'
+
+12--> Select the department name of the company which is assigned to the employee whose employee id is 
+grater 103.
+
+
+13-->  Select the name of the employee who is working under Abhishek.
+
+SELECT EmpName FROM employee
+WHERE EmpHeadid IN (SELECT Empid FROM employee 
+WHERE empname='Abhishek');
+
+14--> Select the name of the employee who is department head of HR.
+
+
+15--> Select the name of the employee head who is permanent.
+
+
+
+
+
+
+
+
