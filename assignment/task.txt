@@ -70,11 +70,15 @@ call insertdata_tblpsales(205,'05/12/2022');
 or more products.
 
 
-SELECT t2.category
-FROM tblsales AS t1
-LEFT JOIN tblproduct As t2 
-on t1.Prd_ID = t2.Prd_ID
-LEFT JOIN tblcustomer AS t3
-ON t1.Cust_id= t3.CustomerID
-WHERE AVG(SalesPrice)
-HAVING 
+
+
+
+
+
+
+
+
+
+
+Task : 2 
+
