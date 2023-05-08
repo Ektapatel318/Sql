@@ -129,7 +129,8 @@ WHERE empname
 LIKE '__h%'
 
 12--> Select the department name of the company which is assigned to the employee whose employee id is 
-grater 103.
+grater 103. 
+
 
 
 13-->  Select the name of the employee who is working under Abhishek.
@@ -141,7 +142,34 @@ WHERE empname='Abhishek');
 14--> Select the name of the employee who is department head of HR.
 
 
+
 15--> Select the name of the employee head who is permanent.
+SELECT Empname FROM employee
+WHERE empid IN (SELECT empid FROM empsalary WHERE ispermanent='Yes')
+
+
+16--> Select the name and email of the Dept Head who is not Permanent.
+
+
+
+17--> Select the employee whose department off is Monday
+SELECT EmpName FROM employee WHERE Department IN
+(SELECT deptid FROM empdept WHERE dept_off='Monday');
+
+18--> select the Indian clients details.
+SELECT * FROM clienttable WHERE cid IN
+(SELECT cid FROM country WHERE cname='India')
+
+19--> select the details of all employee working in development department
+
+
+
+
+
+
+
+
+
 
 
 
